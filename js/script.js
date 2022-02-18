@@ -17,7 +17,7 @@ const quotes = [
 
   {quote: "So many things are possible just as long as you don’t know they’re impossible.",
    source: 'Norton Juster',
-   citation: 'The Phantom Tollbooth'},
+   tags: '#Encouragement'},
 
   {quote: "Brave doesn’t mean you’re not scared. It means you go on even though you’re scared.",
    source: 'Angie Thomas',
@@ -29,7 +29,7 @@ const quotes = [
 
   {quote: "'May the Force be with you' is charming but it’s not important. What’s important is that you become the Force – for yourself and perhaps for other people.",
    source: 'Harrison Ford',
-   year:'2000'},
+   tags: '#strength'},
 
   {quote:"Great things in business are never done by one person. They're done by a team of people.",
    source: 'Steve Jobs',
@@ -47,12 +47,27 @@ function getRandomQuote () {
 // getRandomQuote();
 // console.log(getRandomQuote());
 
+/***
+  * Genarating a random RGB number
+***/
+function randomRGB(){
+  return Math.floor(Math.random() * 256);
+}
+/***
+ * Creating a random color
+***/
+function randomColor(){
+  const color = `rgb(${randomRGB()}, ${randomRGB()}, ${randomRGB()})`;
+  return color;
+ }
+
 
 /***
  * Genarating the html code for the quote
 ***/
 function printQuote() {
   let randomQuote = getRandomQuote();
+
   let html = `<p class="quote"> ${randomQuote.quote} </p>
               <p class="source"> ${randomQuote.source}`;
 
@@ -60,12 +75,19 @@ function printQuote() {
     html += `<span class="citation"> ${randomQuote.citation} </span>`;
   } else if(randomQuote['year']){
     html += `<span class="year"> ${randomQuote.year} </span>`;
+  } else if (randomQuote['tags']){
+    html += `<span class="tags"> ${randomQuote.tags} </span>`;
   }
 
   html += `</p>`;
   document.getElementById('quote-box').innerHTML = html;
+  document.querySelector('body').style = `background-color: ${randomColor()}`;
   return html;
 }
+
+ setInterval(printQuote, 10000);
+
+
 
 
 /***
