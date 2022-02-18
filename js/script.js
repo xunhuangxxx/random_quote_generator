@@ -85,10 +85,8 @@ function printQuote() {
   return html;
 }
 
- setInterval(printQuote, 10000);
-
-
-
+//Genarating a new quote to the page every 10 seconds
+setInterval(printQuote, 10000);
 
 /***
  * click event listener for the print quote button
